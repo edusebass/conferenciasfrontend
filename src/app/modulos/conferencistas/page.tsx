@@ -97,8 +97,10 @@ export default function Page() {
   ];
 
   // listar
+  const [loadingTable, setloadingTable] = useState(false)
   const fetchModule = async (token:any) => {
     try {
+      setloadingTable(true)
       const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/conferencistas`, {
         method: "GET",
         headers: {
@@ -118,14 +120,15 @@ export default function Page() {
         nombre: conferencista.nombre,
         apellido: conferencista.apellido,
         cedula: conferencista.cedula,
-        // fechaNacimiento: new Date(conferencista.fecha_nacimiento).toISOString().split('T')[0],
-        fechaNacimiento: conferencista.fecha_nacimiento,
+        fechaNacimiento: new Date(conferencista.fecha_nacimiento).toISOString().split('T')[0],
+        // fechaNacimiento: conferencista.fecha_nacimiento,
         ciudad: conferencista.ciudad,
         direccion: conferencista.direccion,
         telefono: conferencista.telefono,
         email: conferencista.email,
         empresa: conferencista.empresa,
       }));
+      setloadingTable(false)
       return formattedData
     } catch (error) {
       console.log("Error:", error);
@@ -256,7 +259,7 @@ export default function Page() {
         >
           Añadir nuevo conferencista
         </Button>
-        <Table columns={columns} dataSource={dataSource}></Table>
+        <Table columns={columns} dataSource={dataSource} loading={loadingTable} ></Table>
         {/* Modal para agregar conferencista */}
         <Modal
           title={editingModule ? "Editar Conferencista" : "Agregar Conferencista"}

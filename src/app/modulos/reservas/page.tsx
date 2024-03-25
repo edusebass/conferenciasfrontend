@@ -145,7 +145,10 @@ const MatriculaForm = () => {
 	};
 
 	//obtiene lo de la tabla de reservas
+	const [loadingTable, setloadingTable] = useState(false)
+
 	const fetchModules3 = async (token:any) => {
+		setloadingTable(true)
 		try {
 			const response = await fetch(process.env.NEXT_PUBLIC_URL_BACKEND + `/api/reservas`, {
 			method: "GET",
@@ -169,6 +172,7 @@ const MatriculaForm = () => {
 			conferencista: reservas.id_conferencista.nombre
 			
 			}));
+			setloadingTable(false)
 			return formattedData2 
 		} catch (error) {
 			console.log("Error:", error);
@@ -289,7 +293,7 @@ const MatriculaForm = () => {
       >
         Añadir nueva matricula
       </Button>
-			<Table columns={columns} dataSource={dataSource3}></Table>
+			<Table columns={columns} dataSource={dataSource3} loading={loadingTable} ></Table>
 			{/* Modal para agregar y editar */}
 			<Modal
 				title={editingModule ? "Editar reserva " : "Agregar reserva "}

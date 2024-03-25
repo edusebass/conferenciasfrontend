@@ -72,7 +72,10 @@ export default function Page() {
   ];
 
   // listar
+  const [loadingTable, setloadingTable] = useState(false)
+
   const fetchModule = async (token:any) => {
+    setloadingTable(true)
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/auditorios`, {
         method: "GET",
@@ -95,6 +98,7 @@ export default function Page() {
         capacidad: auditorios.capacidad,
         descripcion: auditorios.descripcion,
       }));
+      setloadingTable(false)
       return formattedData
     } catch (error) {
       console.log("Error:", error);
@@ -214,7 +218,7 @@ export default function Page() {
         >
           Añadir nuevo Auditorio
         </Button>
-        <Table columns={columns} dataSource={dataSource}></Table>
+        <Table columns={columns} dataSource={dataSource} loading={loadingTable} ></Table>
         {/* Modal para agregar Auditorio */}
         <Modal
           title={editingModule ? "Editar Auditorio" : "Agregar Auditorio"}
