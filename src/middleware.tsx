@@ -23,14 +23,14 @@ export function middleware(request: NextRequest) {
   if (isAuthenticated(request) && request.nextUrl.pathname === '/') {
     // Redirige al usuario a una página diferente, como la página principal de la aplicación
     // return NextResponse.redirect('http://localhost:3001/modulos/modulo1');
-    return NextResponse.redirect(new URL("/modulos/reservas", request.url));
+    return NextResponse.redirect(new URL("/modulos/auditorios", request.url));
 
   }
 
   // Si el usuario accede a la ruta "/modulos", redirígelo a "/modulos/modulo1"
   if (request.nextUrl.pathname === '/modulos') {
     // return NextResponse.redirect('http://localhost:3001/modulos/modulo1');
-    return NextResponse.redirect(new URL("/modulos/reservas", request.url));
+    return NextResponse.redirect(new URL("/modulos/auditorios", request.url));
 
   }
 
