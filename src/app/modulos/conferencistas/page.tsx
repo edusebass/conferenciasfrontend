@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext'
 import { DatePicker, Form, message, Button, Table, Modal, Input } from 'antd';
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import dayjs from 'dayjs';
 
 
 export default function Page() {
@@ -117,7 +118,8 @@ export default function Page() {
         nombre: conferencista.nombre,
         apellido: conferencista.apellido,
         cedula: conferencista.cedula,
-        fechaNacimiento: new Date(conferencista.fecha_nacimiento).toISOString().split('T')[0],
+        // fechaNacimiento: new Date(conferencista.fecha_nacimiento).toISOString().split('T')[0],
+        fechaNacimiento: conferencista.fecha_nacimiento,
         ciudad: conferencista.ciudad,
         direccion: conferencista.direccion,
         telefono: conferencista.telefono,
@@ -234,7 +236,15 @@ export default function Page() {
     setIsEditing(true);
     setEditingModule(record);
     form.setFieldsValue(record); // Llenar el formulario con los datos del estudiante
+    console.log(record)
+    const fecha = (record.fecha_nacimiento)
+    
+    
   };
+
+  
+
+  
 
   return (
     <>
@@ -305,7 +315,9 @@ export default function Page() {
               label="Fecha de nacimiento"
               rules={[{ required: true, message: 'Por favor ingrese la fecha de nacimiento del estudiante' }]}
             >
-              <DatePicker format="YYYY/MM/DD" />
+              <DatePicker 
+                maxDate={dayjs('2004-01-31', "YYYY/MM/DD")} 
+              />
             </Form.Item>
             <Form.Item
               name="ciudad"
