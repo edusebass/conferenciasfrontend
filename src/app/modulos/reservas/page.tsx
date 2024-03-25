@@ -291,7 +291,7 @@ const MatriculaForm = () => {
         onClick={() => setIsEditing(true)}
         className='mb-4'
       >
-        Añadir nueva matricula
+        Añadir nueva reserva
       </Button>
 			<Table columns={columns} dataSource={dataSource3} loading={loadingTable} ></Table>
 			{/* Modal para agregar y editar */}
