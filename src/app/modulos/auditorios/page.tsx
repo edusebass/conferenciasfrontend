@@ -29,26 +29,31 @@ export default function Page() {
     },
     {
       key: "2",
+      title: "Codigo",
+      dataIndex: "codigo",
+    },
+    {
+      key: "3",
       title: "Nombre",
       dataIndex: "nombre",
     },
     {
-      key: "3",
+      key: "4",
       title: "Ubicacion",
       dataIndex: "ubicacion",
     },
     {
-      key: "4",
+      key: "5",
       title: "Capacidad",
       dataIndex: "capacidad",
     },
     {
-      key: "5",
+      key: "6",
       title: "Descripcion",
       dataIndex: "descripcion",
     },
     {
-      key: "6",
+      key: "7",
       title: "Acciones",
       render: (record:any) => {
         return (
@@ -93,6 +98,7 @@ export default function Page() {
       const formattedData = data.map((auditorios:any, index:any) => ({
         id: index + 1,
         _id: auditorios._id,
+        codigo: auditorios.codigo,
         nombre: auditorios.nombre,
         ubicacion: auditorios.ubicacion,
         capacidad: auditorios.capacidad,
@@ -130,6 +136,8 @@ export default function Page() {
           },
           body: JSON.stringify(values),
         });
+
+        console.log(response)
   
         if (!response.ok) {
           const errorData = await response.json();
@@ -242,6 +250,17 @@ export default function Page() {
           ]}
         >
           <Form form={form} layout="vertical">
+            <Form.Item
+              name="codigo"
+              label="Codigo"
+              rules={[
+                { required: true, message: 'Ingrese por favor' },
+                { pattern: /^[0-9]+$/, message: "Ingrese solo números" },
+                { max: 10, message: "Máximo 4 dígitos" }
+              ]}
+            >
+              <Input />
+            </Form.Item>
             <Form.Item
               name="nombre"
               label="Nombre"
