@@ -266,7 +266,6 @@ export default function Page() {
               label="Nombre"
               rules={[
                 { required: true, message: 'Ingrese por favor' },
-                { pattern: /^[a-zA-Z]+$/, message: "Ingrese solo letras" }
               ]}
             >
               <Input />
