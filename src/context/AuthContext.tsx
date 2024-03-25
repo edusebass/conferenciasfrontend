@@ -39,7 +39,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       localStorage.setItem('token', userData.token); // Guardar token en localStorage
       document.cookie = `token=${userData.token}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
 
-      router.push("/modulos/modulo1");
+      router.push("/modulos/auditorios");
       
 
     } catch (error:any) {

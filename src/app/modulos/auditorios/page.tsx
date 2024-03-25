@@ -19,8 +19,8 @@ export default function Page() {
   const [form] = Form.useForm();
 
   
-  // Aqui se define las columnas para la tabla de estudiantes
-  // Aqui se define las columnas para la tabla de estudiantes
+  // Aqui se define las columnas para la tabla de 
+  // Aqui se define las columnas para la tabla de 
   const columns = [
     {
       key: "1",
@@ -110,9 +110,6 @@ export default function Page() {
       setloading(true)
       const token = localStorage.getItem('token');
       form.validateFields().then(async (values) => {
-        // solo cuando utilze fechas
-        const fechaNacimiento = values.fecha_nacimiento.toISOString().split('T')[0];
-        values.fecha_nacimiento = fechaNacimiento;
   
         let url = `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/auditorio/registro`;
         let method = 'POST';
@@ -189,8 +186,8 @@ export default function Page() {
     useEffect(() => {
       // Reemplaza "tu_token_aqui" con el token real
       const token = localStorage.getItem('token')
-    console.log(token)
-    fetchModule(token).then((formattedData) => {
+      console.log(token)
+      fetchModule(token).then((formattedData) => {
       setDataSource(formattedData);
     });
   }, []);

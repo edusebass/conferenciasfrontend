@@ -328,6 +328,7 @@ export default function Page() {
               name="telefono"
               label="Teléfono"
               rules={[{ required: true, message: 'Por favor ingrese la ciudad del estudiante' },
+              { pattern: /^[0-9]+$/, message: "Ingrese solo números" },
               { max: 10, message: "Máximo 10 dígitos" }
               ]}
             >
@@ -348,6 +349,7 @@ export default function Page() {
               label="Empresa"
               rules={[
                 { required: true, message: 'Por favor ingrese el correo electrónico del estudiante' },
+                
               ]}
             >
               <Input />

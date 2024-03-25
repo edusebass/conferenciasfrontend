@@ -86,20 +86,21 @@ const MatriculaForm = () => {
 			"Content-Type": "application/json"
 			}
 		});
+		console.log(response)
 		if (!response.ok) {
-			throw new Error("Error al obtener auditorios");
+			throw new Error("Error al obtener estudiantes");
 		}
 		const data = await response.json();
 		console.log(data)
 
 		const formattedData = data.map((auditorios:any, index:any) => ({
-      id: index + 1,
-      _id: auditorios._id,
-      nombre: auditorios.nombre,
-      ubicacion: auditorios.ubicacion,
-      capacidad: auditorios.capacidad,
-      descripcion: auditorios.descripcion,
-    }));
+			id: index + 1,
+			_id: auditorios._id,
+			nombre: auditorios.nombre,
+			ubicacion: auditorios.ubicacion,
+			capacidad: auditorios.capacidad,
+			descripcion: auditorios.descripcion,
+		}));
 		return formattedData
 		} catch (error) {
 		console.log("Error:", error);
@@ -327,7 +328,7 @@ const MatriculaForm = () => {
 					label="Descripcion"
 					rules={[
 						{ required: true, message: 'Ingrese por favor' },
-						{ pattern: /^[a-zA-Z]+$/, message: "Ingrese solo letras" }
+
 					  ]}
 					>
 				<Input />
@@ -340,7 +341,7 @@ const MatriculaForm = () => {
 					<Select placeholder="Seleccione un auditorio">
 					{dataSource.map(auditorio => (
 						<Option key={auditorio.id} value={auditorio._id}>
-						{auditorio.nombre} {auditorio.capacidad}
+						{auditorio.nombre} || Capacidad: {auditorio.capacidad}
 						</Option>
 					))}
 					</Select>
