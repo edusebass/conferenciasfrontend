@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Sistema de conferencias",
   description: "Gestion de sistema de conferencias",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({
